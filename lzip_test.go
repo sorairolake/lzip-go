@@ -11,14 +11,6 @@ import (
 	"github.com/sorairolake/lzip-go"
 )
 
-func TestMagicSize(t *testing.T) {
-	t.Parallel()
-
-	if size := lzip.MagicSize; size != 4 {
-		t.Errorf("expected magic number size `%v`, got `%v`", 4, size)
-	}
-}
-
 func TestHeaderSize(t *testing.T) {
 	t.Parallel()
 
@@ -40,6 +32,14 @@ func TestMagic(t *testing.T) {
 
 	if magic := lzip.Magic; magic != "LZIP" {
 		t.Errorf("expected magic number `%v`, got `%v`", "LZIP", magic)
+	}
+}
+
+func TestMagicSize(t *testing.T) {
+	t.Parallel()
+
+	if size := lzip.MagicSize; size != 4 {
+		t.Errorf("expected magic number size `%v`, got `%v`", 4, size)
 	}
 }
 

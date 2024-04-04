@@ -32,7 +32,7 @@ type WriterOptions struct {
 }
 
 func newWriterOptions() *WriterOptions {
-	opt := &WriterOptions{defaultDictSize}
+	opt := &WriterOptions{DefaultDictSize}
 
 	return opt
 }
@@ -40,9 +40,9 @@ func newWriterOptions() *WriterOptions {
 // Verify checks if [WriterOptions] is valid.
 func (o *WriterOptions) Verify() error {
 	switch {
-	case o.DictSize < minDictSize:
+	case o.DictSize < MinDictSize:
 		return ErrDictSizeTooSmall
-	case o.DictSize > maxDictSize:
+	case o.DictSize > MaxDictSize:
 		return ErrDictSizeTooLarge
 	}
 
@@ -137,7 +137,7 @@ func (z *Writer) Close() error {
 	binary.LittleEndian.PutUint64(trailer[4:12], z.trailer.dataSize)
 	binary.LittleEndian.PutUint64(trailer[12:], headerSize+uint64(len(cb))+trailerSize)
 
-	if binary.LittleEndian.Uint64(trailer[12:]) > maxMemberSize {
+	if binary.LittleEndian.Uint64(trailer[12:]) > MaxMemberSize {
 		return ErrMemberSizeTooLarge
 	}
 

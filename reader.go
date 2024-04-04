@@ -49,9 +49,9 @@ func NewReader(r io.Reader) (*Reader, error) {
 	dictSize -= (dictSize / 16) * int((header[5]>>5)&0x07)
 
 	switch {
-	case dictSize < minDictSize:
+	case dictSize < MinDictSize:
 		return nil, ErrDictSizeTooSmall
-	case dictSize > maxDictSize:
+	case dictSize > MaxDictSize:
 		return nil, ErrDictSizeTooLarge
 	}
 
@@ -67,7 +67,7 @@ func NewReader(r io.Reader) (*Reader, error) {
 	copy(lzmaHeader[5:], rb[len(rb)-16:len(rb)-8])
 
 	z.trailer.memberSize = uint64(headerSize + len(rb))
-	if z.trailer.memberSize > maxMemberSize {
+	if z.trailer.memberSize > MaxMemberSize {
 		return nil, ErrMemberSizeTooLarge
 	}
 

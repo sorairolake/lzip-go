@@ -18,12 +18,12 @@ import (
 )
 
 const (
-	magicSize   = 4
 	headerSize  = 6
 	trailerSize = 20
 )
 
 const magic = "LZIP"
+const magicSize = 4
 
 type version uint8
 
@@ -33,12 +33,18 @@ const (
 )
 
 const (
-	minDictSize     = lzma.MinDictCap
-	maxDictSize     = 1 << 29
-	defaultDictSize = 0x800000
+	// MinDictSize is the minimum dictionary size, which is 4 KiB.
+	MinDictSize = lzma.MinDictCap
+
+	// MaxDictSize is the maximum dictionary size, which is 512 MiB.
+	MaxDictSize = 1 << 29
+
+	// DefaultDictSize is the default dictionary size, which is 8 MiB.
+	DefaultDictSize = 0x800000
 )
 
-const maxMemberSize = 0x8000000000000
+// MaxMemberSize is the maximum member size, which is 2 PiB.
+const MaxMemberSize = 0x8000000000000
 
 type header struct {
 	magic [magicSize]byte
@@ -49,7 +55,7 @@ type header struct {
 func newHeader(dictSize int) *header {
 	ds := bits.Len(uint(dictSize - 1))
 
-	if dictSize > minDictSize {
+	if dictSize > MinDictSize {
 		base := 1 << dictSize
 		frac := base / 16
 
