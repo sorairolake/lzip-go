@@ -48,3 +48,7 @@ lint: vet staticcheck
 # Run the formatter for the README
 @fmt-readme:
     npx prettier -w README.md
+
+# Increment the version
+@bump part:
+    bump-my-version bump {{part}}

@@ -31,6 +31,19 @@ Please see [`example_test.go`].
 
 See the [documentation][reference-url] for more details.
 
+## Command-line utility
+
+This package includes a simple command-line utility for reading and writing of
+lzip format compressed files.
+
+To install:
+
+```sh
+go install github.com/sorairolake/lzip-go/cmd/glzip@latest
+```
+
+See [`glzip(1)`] for details.
+
 ## Minimum Go version
 
 This package requires the minimum version of Go 1.22.
@@ -69,6 +82,7 @@ licensing information.
 [lzip compressed format]: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
 [Go]: https://go.dev/
 [`example_test.go`]: example_test.go
+[`glzip(1)`]: docs/man/man1/glzip.1.adoc
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
 [`compress/gzip`]: https://pkg.go.dev/compress/gzip
