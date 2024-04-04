@@ -1,0 +1,58 @@
+# SPDX-FileCopyrightText: 2024 Shun Sakai
+#
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "develop"
+      - "master"
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-22.04
+          - macos-12
+          - windows-2022
+        go-version:
+          - "1.22" # Go version
+          - "stable"
+    steps:
+      - name: Set Git to use LF
+        if: matrix.os == 'windows-2022'
+        run: |
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Go environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+      - name: Run tests
+        run: go test -race -v ./...
+
+  golangci-lint:
+    name: golangci-lint
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Go environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v4.0.0
+        with:
+          version: "latest"
+          args: -E gofmt,goimports -v
