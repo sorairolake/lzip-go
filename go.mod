@@ -4,4 +4,6 @@
 
 module github.com/sorairolake/lzip-go
 
-go 1.21
+go 1.22
+
+require github.com/ulikunitz/xz v0.5.12

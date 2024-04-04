@@ -10,11 +10,14 @@ SPDX-License-Identifier: Apache-2.0 OR MIT
 [![Go Reference][reference-badge]][reference-url]
 ![Go version][go-version-badge]
 
-**lzip-go** is an implementation of the [lzip compressed format].
+**lzip-go** is an implementation of the [lzip compressed format] written in
+pure [Go].
+
+This package supports reading and writing of lzip compressed streams.
 
 ## Usage
 
-To install this library:
+To install this package:
 
 ```sh
 go get -u github.com/sorairolake/lzip-go
@@ -30,7 +33,7 @@ See the [documentation][reference-url] for more details.
 
 ## Minimum Go version
 
-This library requires the minimum version of Go 1.21.
+This package requires the minimum version of Go 1.22.
 
 ## Changelog
 
@@ -40,11 +43,18 @@ Please see [CHANGELOG.adoc].
 
 Please see [CONTRIBUTING.adoc].
 
+## Acknowledgment
+
+The API of this package is based on the [`compress/gzip`] package.
+
+This package uses the [`github.com/ulikunitz/xz/lzma`] package to encode and
+decode LZMA streams.
+
 ## License
 
 Copyright &copy; 2024 Shun Sakai (see [AUTHORS.adoc])
 
-This library is distributed under the terms of either the _Apache License 2.0_
+This package is distributed under the terms of either the _Apache License 2.0_
 or the _MIT License_.
 
 This project is compliant with version 3.0 of the [_REUSE Specification_]. See
@@ -57,8 +67,11 @@ licensing information.
 [reference-url]: https://pkg.go.dev/github.com/sorairolake/lzip-go
 [go-version-badge]: https://img.shields.io/github/go-mod/go-version/sorairolake/lzip-go?style=for-the-badge&logo=go
 [lzip compressed format]: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
+[Go]: https://go.dev/
 [`example_test.go`]: example_test.go
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
+[`compress/gzip`]: https://pkg.go.dev/compress/gzip
+[`github.com/ulikunitz/xz/lzma`]: https://pkg.go.dev/github.com/ulikunitz/xz/lzma
 [AUTHORS.adoc]: AUTHORS.adoc
 [_REUSE Specification_]: https://reuse.software/spec/
