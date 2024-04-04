@@ -13,57 +13,44 @@ import (
 func TestHeaderSize(t *testing.T) {
 	t.Parallel()
 
-	const expected = 6
-
-	if size := lzip.HeaderSize; size != expected {
-		t.Errorf("expected header size `%v`, got `%v`", expected, size)
+	if size := lzip.HeaderSize; size != 6 {
+		t.Errorf("expected header size `%v`, got `%v`", 6, size)
 	}
 }
 
 func TestTrailerSize(t *testing.T) {
 	t.Parallel()
 
-	const expected = 20
-
-	if size := lzip.TrailerSize; size != expected {
-		t.Errorf("expected trailer size `%v`, got `%v`", expected, size)
+	if size := lzip.TrailerSize; size != 20 {
+		t.Errorf("expected trailer size `%v`, got `%v`", 20, size)
 	}
 }
 
 func TestMagic(t *testing.T) {
 	t.Parallel()
 
-	const expected = "LZIP"
-
-	if magic := lzip.Magic; magic != expected {
-		t.Errorf("expected magic number `%v`, got `%v`", expected, magic)
+	if magic := lzip.Magic; magic != "LZIP" {
+		t.Errorf("expected magic number `%v`, got `%v`", "LZIP", magic)
 	}
 }
 
 func TestMagicSize(t *testing.T) {
 	t.Parallel()
 
-	const expected = 4
-
-	if size := lzip.MagicSize; size != expected {
-		t.Errorf("expected magic number size `%v`, got `%v`", expected, size)
+	if size := lzip.MagicSize; size != 4 {
+		t.Errorf("expected magic number size `%v`, got `%v`", 4, size)
 	}
 }
 
 func TestVersion(t *testing.T) {
 	t.Parallel()
 
-	const (
-		expectedV0 = iota
-		expectedV1
-	)
-
-	if v0 := lzip.Version0; v0 != expectedV0 {
-		t.Errorf("expected version number `%v`, got `%v`", expectedV0, v0)
+	if v0 := lzip.Version0; v0 != 0 {
+		t.Errorf("expected version number `%v`, got `%v`", 0, v0)
 	}
 
-	if v1 := lzip.Version1; v1 != expectedV1 {
-		t.Errorf("expected version number `%v`, got `%v`", expectedV1, v1)
+	if v1 := lzip.Version1; v1 != 1 {
+		t.Errorf("expected version number `%v`, got `%v`", 1, v1)
 	}
 }
 
