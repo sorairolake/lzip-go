@@ -79,7 +79,7 @@ func TestMaxDictSize(t *testing.T) {
 func TestDefaultDictSize(t *testing.T) {
 	t.Parallel()
 
-	const expected = 8 * (1 << 20)
+	const expected = 1 << 23
 
 	if size := lzip.DefaultDictSize; size != expected {
 		t.Errorf("expected default dictionary size `%v`, got `%v`", expected, size)
@@ -89,7 +89,7 @@ func TestDefaultDictSize(t *testing.T) {
 func TestMaxMemberSize(t *testing.T) {
 	t.Parallel()
 
-	const expected = 2 * (1 << 50)
+	const expected = 1 << 51
 
 	if size := lzip.MaxMemberSize; size != expected {
 		t.Errorf("expected maximum member size `%v`, got `%v`", expected, size)

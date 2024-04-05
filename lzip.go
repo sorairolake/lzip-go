@@ -40,11 +40,11 @@ const (
 	MaxDictSize = 1 << 29
 
 	// DefaultDictSize is the default dictionary size, which is 8 MiB.
-	DefaultDictSize = 0x800000
+	DefaultDictSize = 1 << 23
 )
 
 // MaxMemberSize is the maximum member size, which is 2 PiB.
-const MaxMemberSize = 0x8000000000000
+const MaxMemberSize = 1 << 51
 
 type header struct {
 	magic [magicSize]byte
