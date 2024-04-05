@@ -5,22 +5,14 @@
 package lzip
 
 const (
-	MagicSize   = magicSize
 	HeaderSize  = headerSize
 	TrailerSize = trailerSize
 )
 
 const Magic = magic
+const MagicSize = magicSize
 
 const (
 	Version0 = version0
 	Version1 = version1
 )
-
-const (
-	MinDictSize     = minDictSize
-	MaxDictSize     = maxDictSize
-	DefaultDictSize = defaultDictSize
-)
-
-const MaxMemberSize = maxMemberSize

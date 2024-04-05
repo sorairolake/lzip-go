@@ -10,7 +10,6 @@ import (
 	"errors"
 	"hash/crc32"
 	"io"
-	"reflect"
 	"slices"
 
 	"github.com/ulikunitz/xz/lzma"
@@ -33,7 +32,7 @@ func NewReader(r io.Reader) (*Reader, error) {
 		return nil, err
 	}
 
-	if !reflect.DeepEqual(header[:magicSize], []byte(magic)) {
+	if !slices.Equal(header[:magicSize], []byte(magic)) {
 		return nil, ErrInvalidMagic
 	}
 
@@ -45,13 +44,13 @@ func NewReader(r io.Reader) (*Reader, error) {
 		return nil, ErrUnknownVersion
 	}
 
-	dictSize := 1 << (int(header[5] & 0x1f))
-	dictSize -= (dictSize / 16) * int((header[5]>>5)&0x07)
+	dictSize := uint32(1 << (header[5] & 0x1f))
+	dictSize -= (dictSize / 16) * uint32((header[5]>>5)&0x07)
 
 	switch {
-	case dictSize < minDictSize:
+	case dictSize < MinDictSize:
 		return nil, ErrDictSizeTooSmall
-	case dictSize > maxDictSize:
+	case dictSize > MaxDictSize:
 		return nil, ErrDictSizeTooLarge
 	}
 
@@ -63,11 +62,11 @@ func NewReader(r io.Reader) (*Reader, error) {
 
 	var lzmaHeader [lzma.HeaderLen]byte
 	lzmaHeader[0] = lzma.Properties{LC: 3, LP: 0, PB: 2}.Code()
-	binary.LittleEndian.PutUint32(lzmaHeader[1:5], uint32(dictSize))
+	binary.LittleEndian.PutUint32(lzmaHeader[1:5], dictSize)
 	copy(lzmaHeader[5:], rb[len(rb)-16:len(rb)-8])
 
 	z.trailer.memberSize = uint64(headerSize + len(rb))
-	if z.trailer.memberSize > maxMemberSize {
+	if z.trailer.memberSize > MaxMemberSize {
 		return nil, ErrMemberSizeTooLarge
 	}
 

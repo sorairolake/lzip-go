@@ -68,6 +68,7 @@ func TestWriterOptions(t *testing.T) {
 	opt := &lzip.WriterOptions{4 * 1024 * 1024}
 
 	var buf bytes.Buffer
+
 	writer, err := lzip.NewWriterOptions(&buf, opt)
 	if err != nil {
 		t.Fatal(err)
