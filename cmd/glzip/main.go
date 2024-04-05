@@ -110,7 +110,7 @@ func main() {
 	opt := new(options)
 
 	flag.BoolVar(&opt.version, "version", false, "Print version number")
-	flag.BoolVar(&opt.stdout, "stdout", false, "Write to standard output")
+	flag.BoolVar(&opt.stdout, "stdout", false, "Write to standard output, keep input files")
 	flag.BoolVar(&opt.decompress, "decompress", false, "Decompress data")
 	flag.BoolVar(&opt.keep, "keep", false, "Keep input files")
 	flag.UintVar(&opt.dictionarySize, "dictionary-size", lzip.DefaultDictSize, "Set dictionary size in bytes")
