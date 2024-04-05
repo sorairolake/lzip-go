@@ -38,7 +38,7 @@ func compress(file string, output *os.File, opt options) error {
 
 	defer output.Close()
 
-	writerOpt := &lzip.WriterOptions{DictSize: int(opt.dictionarySize)}
+	writerOpt := &lzip.WriterOptions{DictSize: uint32(opt.dictionarySize)}
 
 	bufWriter := bufio.NewWriter(output)
 	defer bufWriter.Flush()

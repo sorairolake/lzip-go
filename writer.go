@@ -28,7 +28,7 @@ type Writer struct {
 // WriterOptions configures [Writer].
 type WriterOptions struct {
 	// DictSize sets the dictionary size.
-	DictSize int
+	DictSize uint32
 }
 
 func newWriterOptions() *WriterOptions {
@@ -73,7 +73,7 @@ func NewWriterOptions(w io.Writer, opt *WriterOptions) (*Writer, error) {
 
 	z := &Writer{w: w}
 
-	compressor, err := lzma.WriterConfig{DictCap: opt.DictSize}.NewWriter(&z.buf)
+	compressor, err := lzma.WriterConfig{DictCap: int(opt.DictSize)}.NewWriter(&z.buf)
 	if err != nil {
 		return nil, err
 	}

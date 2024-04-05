@@ -20,6 +20,7 @@ func Example() {
 	opt := &lzip.WriterOptions{4 * 1024 * 1024}
 
 	var buf bytes.Buffer
+
 	writer, err := lzip.NewWriterOptions(&buf, opt)
 	if err != nil {
 		log.Fatal(err)
@@ -55,11 +56,15 @@ func ExampleReader() {
 
 	reader, err := lzip.NewReader(bufio.NewReader(file))
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
+
+		return
 	}
 
 	if _, err := io.Copy(os.Stdout, reader); err != nil {
-		log.Fatal(err)
+		log.Print(err)
+
+		return
 	}
 
 	// Output:

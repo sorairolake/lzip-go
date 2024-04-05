@@ -16,10 +16,17 @@ project adheres to https://semver.org/[Semantic Versioning].
 
 == {compare-url}/v0.1.0\...HEAD[Unreleased]
 
+=== Added
+
+* Add a simple command-line utility for reading and writing of lzip format
+  compressed files ({pull-request-url}/4[#4])
+
 === Changed
 
 * Export constants regarding the dictionary size and the member size
   ({pull-request-url}/3[#3])
+* Change the type of `WriterOptions.DictSize` from `int` to `uint32`
+  ({pull-request-url}/5[#5])
 
 == {project-url}/releases/tag/v0.1.0[0.1.0] - 2024-04-04
 

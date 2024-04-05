@@ -52,8 +52,8 @@ type header struct {
 	dictSize uint8
 }
 
-func newHeader(dictSize int) *header {
-	ds := bits.Len(uint(dictSize - 1))
+func newHeader(dictSize uint32) *header {
+	ds := bits.Len32(dictSize - 1)
 
 	if dictSize > MinDictSize {
 		base := 1 << dictSize
