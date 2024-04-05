@@ -10,7 +10,6 @@ import (
 	"errors"
 	"hash/crc32"
 	"io"
-	"reflect"
 	"slices"
 
 	"github.com/ulikunitz/xz/lzma"
@@ -33,7 +32,7 @@ func NewReader(r io.Reader) (*Reader, error) {
 		return nil, err
 	}
 
-	if !reflect.DeepEqual(header[:magicSize], []byte(magic)) {
+	if !slices.Equal(header[:magicSize], []byte(magic)) {
 		return nil, ErrInvalidMagic
 	}
 

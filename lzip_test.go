@@ -5,6 +5,7 @@
 package lzip_test
 
 import (
+	"slices"
 	"testing"
 
 	"github.com/sorairolake/lzip-go"
@@ -29,8 +30,9 @@ func TestTrailerSize(t *testing.T) {
 func TestMagic(t *testing.T) {
 	t.Parallel()
 
-	if magic := lzip.Magic; magic != "LZIP" {
-		t.Errorf("expected magic number `%v`, got `%v`", "LZIP", magic)
+	expected := [lzip.MagicSize]byte{0x4c, 0x5a, 0x49, 0x50}
+	if !slices.Equal([]byte(lzip.Magic), expected[:]) {
+		t.Error("unexpected magic number")
 	}
 }
 
