@@ -39,11 +39,11 @@ func newWriterOptions() *WriterOptions {
 
 // Verify checks if [WriterOptions] is valid.
 func (o *WriterOptions) Verify() error {
-	switch {
-	case o.DictSize < MinDictSize:
-		return ErrDictSizeTooSmall
-	case o.DictSize > MaxDictSize:
-		return ErrDictSizeTooLarge
+	switch dictSize := o.DictSize; {
+	case dictSize < MinDictSize:
+		return &DictSizeTooSmallError{dictSize}
+	case dictSize > MaxDictSize:
+		return &DictSizeTooLargeError{dictSize}
 	}
 
 	return nil
@@ -137,8 +137,8 @@ func (z *Writer) Close() error {
 	binary.LittleEndian.PutUint64(trailer[4:12], z.trailer.dataSize)
 	binary.LittleEndian.PutUint64(trailer[12:], headerSize+uint64(len(cb))+trailerSize)
 
-	if binary.LittleEndian.Uint64(trailer[12:]) > MaxMemberSize {
-		return ErrMemberSizeTooLarge
+	if memberSize := binary.LittleEndian.Uint64(trailer[12:]); memberSize > MaxMemberSize {
+		return &MemberSizeTooLargeError{memberSize}
 	}
 
 	_, err := z.w.Write(trailer[:])

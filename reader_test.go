@@ -63,8 +63,20 @@ func TestReaderUnknownVersion(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if _, err := lzip.NewReader(file); !errors.Is(err, lzip.ErrUnknownVersion) {
-		t.Error("unexpected error type")
+	_, err = lzip.NewReader(file)
+	if err == nil {
+		t.Fatal("unexpected success")
+	}
+
+	var unknownVersionError *lzip.UnknownVersionError
+	if !errors.As(err, &unknownVersionError) {
+		t.Fatal("unexpected error type")
+	}
+
+	const expected = 2
+
+	if v := unknownVersionError.Version; v != expected {
+		t.Errorf("expected unrecognized version number `%v`, got `%v`", expected, v)
 	}
 }
 
@@ -76,7 +88,19 @@ func TestReaderDictSizeTooSmall(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if _, err := lzip.NewReader(file); !errors.Is(err, lzip.ErrDictSizeTooSmall) {
-		t.Error("unexpected error type")
+	_, err = lzip.NewReader(file)
+	if err == nil {
+		t.Fatal("unexpected success")
+	}
+
+	var dictSizeTooSmallError *lzip.DictSizeTooSmallError
+	if !errors.As(err, &dictSizeTooSmallError) {
+		t.Fatal("unexpected error type")
+	}
+
+	const expected = 1 << 11
+
+	if size := dictSizeTooSmallError.DictSize; size != expected {
+		t.Errorf("expected too small dictionary size `%v`, got `%v`", expected, size)
 	}
 }

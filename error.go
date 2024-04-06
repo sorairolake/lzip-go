@@ -6,43 +6,86 @@ package lzip
 
 import "errors"
 
-var (
-	// ErrInvalidMagic represents an error due to the magic number was
-	// invalid.
-	ErrInvalidMagic = errors.New("lzip: invalid magic number")
+// ErrInvalidMagic represents an error due to the magic number was invalid.
+var ErrInvalidMagic = errors.New("lzip: invalid magic number")
 
-	// ErrUnsupportedVersion represents an error due to the version number
-	// stored in the header indicated the lzip format which is not
-	// supported by this package.
-	ErrUnsupportedVersion = errors.New("lzip: unsupported version number")
+// UnsupportedVersionError represents an error due to the version number stored
+// in the header indicated the lzip format which is not supported by this
+// package.
+type UnsupportedVersionError struct {
+	Version uint8
+}
 
-	// ErrUnknownVersion represents an error due to the version number
-	// stored in the header was not recognized by this package.
-	ErrUnknownVersion = errors.New("lzip: unknown version number")
+func (e *UnsupportedVersionError) Error() string {
+	return "lzip: unsupported version number"
+}
 
-	// ErrDictSizeTooSmall represents an error due to the dictionary size
-	// was smaller than 4 KiB.
-	ErrDictSizeTooSmall = errors.New("lzip: dictionary size is too small")
+// UnknownVersionError represents an error due to the version number stored in
+// the header was not recognized by this package.
+type UnknownVersionError struct {
+	Version uint8
+}
 
-	// ErrDictSizeTooLarge represents an error due to the dictionary size
-	// was larger than 512 MiB.
-	ErrDictSizeTooLarge = errors.New("lzip: dictionary size is too large")
+func (e *UnknownVersionError) Error() string {
+	return "lzip: unknown version number"
+}
 
-	// ErrInvalidCRC represents an error due to a CRC of the original
-	// uncompressed data mismatched.
-	ErrInvalidCRC = errors.New("lzip: CRC mismatch")
+// DictSizeTooSmallError represents an error due to the dictionary size was
+// smaller than 4 KiB.
+type DictSizeTooSmallError struct {
+	DictSize uint32
+}
 
-	// ErrInvalidDataSize represents an error due to the size of the
-	// original uncompressed data stored in the trailer and the actual size
-	// of it mismatched.
-	ErrInvalidDataSize = errors.New("lzip: data size mismatch")
+func (e *DictSizeTooSmallError) Error() string {
+	return "lzip: dictionary size is too small"
+}
 
-	// ErrInvalidMemberSize represents an error due to the total size of
-	// the member stored in the trailer and the actual total size of it
-	// mismatched.
-	ErrInvalidMemberSize = errors.New("lzip: member size mismatch")
+// DictSizeTooLargeError represents an error due to the dictionary size was
+// larger than 512 MiB.
+type DictSizeTooLargeError struct {
+	DictSize uint32
+}
 
-	// ErrDictSizeTooLarge represents an error due to the member size was
-	// larger than 2 PiB.
-	ErrMemberSizeTooLarge = errors.New("lzip: member size is too large")
-)
+func (e *DictSizeTooLargeError) Error() string {
+	return "lzip: dictionary size is too large"
+}
+
+// InvalidCRCError represents an error due to a CRC of the original
+// uncompressed data mismatched.
+type InvalidCRCError struct {
+	CRC uint32
+}
+
+func (e *InvalidCRCError) Error() string {
+	return "lzip: CRC mismatch"
+}
+
+// InvalidDataSizeError represents an error due to the size of the original
+// uncompressed data stored in the trailer and the actual size of it mismatched.
+type InvalidDataSizeError struct {
+	DataSize uint64
+}
+
+func (e *InvalidDataSizeError) Error() string {
+	return "lzip: data size mismatch"
+}
+
+// InvalidMemberSizeError represents an error due to the total size of the
+// member stored in the trailer and the actual total size of it mismatched.
+type InvalidMemberSizeError struct {
+	MemberSize uint64
+}
+
+func (e *InvalidMemberSizeError) Error() string {
+	return "lzip: member size mismatch"
+}
+
+// MemberSizeTooLargeError represents an error due to the member size was
+// larger than 2 PiB.
+type MemberSizeTooLargeError struct {
+	MemberSize uint64
+}
+
+func (e *MemberSizeTooLargeError) Error() string {
+	return "lzip: member size is too large"
+}
