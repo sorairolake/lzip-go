@@ -6,7 +6,7 @@
 // Specify in UTC.
 :docdate: 2024-04-04
 :doctype: manpage
-:mansource: glzip 0.2.0
+:mansource: glzip 0.3.0
 :manmanual: General Commands Manual
 :includedir: ../include
 
