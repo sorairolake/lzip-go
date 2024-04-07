@@ -65,7 +65,7 @@ func TestWriterOptions(t *testing.T) {
 
 	text := string(data)
 
-	opt := &lzip.WriterOptions{4 * 1024 * 1024}
+	opt := &lzip.WriterOptions{1 << 22}
 
 	var buf bytes.Buffer
 
@@ -105,43 +105,91 @@ func TestWriterOptions(t *testing.T) {
 func TestWriterOptionsDictSizeTooSmall(t *testing.T) {
 	t.Parallel()
 
-	opt := &lzip.WriterOptions{(4 * 1024) - 1}
+	const expected = (1 << 12) - 1
 
-	if _, err := lzip.NewWriterOptions(io.Discard, opt); !errors.Is(err, lzip.ErrDictSizeTooSmall) {
-		t.Error("unexpected error type")
+	opt := &lzip.WriterOptions{expected}
+
+	_, err := lzip.NewWriterOptions(io.Discard, opt)
+	if err == nil {
+		t.Fatal("unexpected success")
+	}
+
+	var dictSizeTooSmallError *lzip.DictSizeTooSmallError
+	if !errors.As(err, &dictSizeTooSmallError) {
+		t.Fatal("unexpected error type")
+	}
+
+	if size := dictSizeTooSmallError.DictSize; size != expected {
+		t.Errorf("expected too small dictionary size `%v`, got `%v`", expected, size)
 	}
 }
 
 func TestWriterOptionsDictSizeTooLarge(t *testing.T) {
 	t.Parallel()
 
-	opt := &lzip.WriterOptions{(512 * 1024 * 1024) + 1}
+	const expected = (1 << 29) + 1
 
-	if _, err := lzip.NewWriterOptions(io.Discard, opt); !errors.Is(err, lzip.ErrDictSizeTooLarge) {
-		t.Error("unexpected error type")
+	opt := &lzip.WriterOptions{expected}
+
+	_, err := lzip.NewWriterOptions(io.Discard, opt)
+	if err == nil {
+		t.Fatal("unexpected success")
+	}
+
+	var dictSizeTooLargeError *lzip.DictSizeTooLargeError
+	if !errors.As(err, &dictSizeTooLargeError) {
+		t.Fatal("unexpected error type")
+	}
+
+	if size := dictSizeTooLargeError.DictSize; size != expected {
+		t.Errorf("expected too large dictionary size `%v`, got `%v`", expected, size)
 	}
 }
 
 func TestVerifyWriterOptions(t *testing.T) {
 	t.Parallel()
 
-	opt := &lzip.WriterOptions{4 * 1024}
+	opt := &lzip.WriterOptions{1 << 12}
 	if err := opt.Verify(); err != nil {
 		t.Fatal(err)
 	}
 
-	opt = &lzip.WriterOptions{512 * 1024 * 1024}
+	opt = &lzip.WriterOptions{1 << 29}
 	if err := opt.Verify(); err != nil {
 		t.Fatal(err)
 	}
 
-	opt = &lzip.WriterOptions{(4 * 1024) - 1}
-	if err := opt.Verify(); !errors.Is(err, lzip.ErrDictSizeTooSmall) {
-		t.Error("unexpected error type")
+	var expected uint32 = (1 << 12) - 1
+	opt = &lzip.WriterOptions{expected}
+
+	err := opt.Verify()
+	if err == nil {
+		t.Fatal("unexpected success")
 	}
 
-	opt = &lzip.WriterOptions{(512 * 1024 * 1024) + 1}
-	if err := opt.Verify(); !errors.Is(err, lzip.ErrDictSizeTooLarge) {
-		t.Error("unexpected error type")
+	var dictSizeTooSmallError *lzip.DictSizeTooSmallError
+	if !errors.As(err, &dictSizeTooSmallError) {
+		t.Fatal("unexpected error type")
+	}
+
+	if size := dictSizeTooSmallError.DictSize; size != expected {
+		t.Errorf("expected too small dictionary size `%v`, got `%v`", expected, size)
+	}
+
+	expected = (1 << 29) + 1
+	opt = &lzip.WriterOptions{expected}
+
+	err = opt.Verify()
+	if err == nil {
+		t.Fatal("unexpected success")
+	}
+
+	var dictSizeTooLargeError *lzip.DictSizeTooLargeError
+	if !errors.As(err, &dictSizeTooLargeError) {
+		t.Fatal("unexpected error type")
+	}
+
+	if size := dictSizeTooLargeError.DictSize; size != expected {
+		t.Errorf("expected too large dictionary size `%v`, got `%v`", expected, size)
 	}
 }

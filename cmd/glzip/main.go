@@ -16,7 +16,7 @@ import (
 	"github.com/sorairolake/lzip-go"
 )
 
-const version = "0.2.0"
+const version = "0.3.0"
 
 type options struct {
 	version        bool
@@ -116,7 +116,7 @@ func main() {
 	flag.UintVar(&opt.dictionarySize, "dictionary-size", lzip.DefaultDictSize, "Set dictionary size in bytes")
 
 	flag.Usage = func() {
-		fmt.Fprintf(flag.CommandLine.Output(), "Usage: glzip [OPTIONS] [FILE]...\n")
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage: glzip [OPTIONS] <FILE>...\n")
 		flag.PrintDefaults()
 	}
 	flag.Parse()
