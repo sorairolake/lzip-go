@@ -6,7 +6,7 @@
 current_version = "0.3.0"
 
 [[tool.bumpversion.files]]
-filename = "cmd/glzip/main.go"
+filename = "cmd/glzip/cli.go"
 
 [[tool.bumpversion.files]]
 filename = "docs/man/man1/glzip.1.adoc"
