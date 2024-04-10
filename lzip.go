@@ -25,23 +25,21 @@ const (
 const magic = "LZIP"
 const magicSize = 4
 
-type version uint8
+type version byte
 
 const (
 	version0 version = iota
 	version1
 )
 
-const (
-	// MinDictSize is the minimum dictionary size, which is 4 KiB.
-	MinDictSize = lzma.MinDictCap
+// MinDictSize is the minimum dictionary size, which is 4 KiB.
+const MinDictSize = lzma.MinDictCap
 
-	// MaxDictSize is the maximum dictionary size, which is 512 MiB.
-	MaxDictSize = 1 << 29
+// MaxDictSize is the maximum dictionary size, which is 512 MiB.
+const MaxDictSize = 1 << 29
 
-	// DefaultDictSize is the default dictionary size, which is 8 MiB.
-	DefaultDictSize = 1 << 23
-)
+// DefaultDictSize is the default dictionary size, which is 8 MiB.
+const DefaultDictSize = 1 << 23
 
 // MaxMemberSize is the maximum member size, which is 2 PiB.
 const MaxMemberSize = 1 << 51
@@ -49,7 +47,7 @@ const MaxMemberSize = 1 << 51
 type header struct {
 	magic [magicSize]byte
 	version
-	dictSize uint8
+	dictSize byte
 }
 
 func newHeader(dictSize uint32) *header {
@@ -66,7 +64,7 @@ func newHeader(dictSize uint32) *header {
 		}
 	}
 
-	z := &header{[magicSize]byte([]byte(magic)), version1, uint8(ds)}
+	z := &header{[magicSize]byte([]byte(magic)), version1, byte(ds)}
 
 	return z
 }
