@@ -25,7 +25,7 @@ const (
 const magic = "LZIP"
 const magicSize = 4
 
-type version uint8
+type version byte
 
 const (
 	version0 version = iota
@@ -47,7 +47,7 @@ const MaxMemberSize = 1 << 51
 type header struct {
 	magic [magicSize]byte
 	version
-	dictSize uint8
+	dictSize byte
 }
 
 func newHeader(dictSize uint32) *header {
@@ -64,7 +64,7 @@ func newHeader(dictSize uint32) *header {
 		}
 	}
 
-	z := &header{[magicSize]byte([]byte(magic)), version1, uint8(ds)}
+	z := &header{[magicSize]byte([]byte(magic)), version1, byte(ds)}
 
 	return z
 }

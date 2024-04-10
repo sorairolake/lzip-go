@@ -14,7 +14,7 @@ var ErrInvalidMagic = errors.New("lzip: invalid magic number")
 // package.
 type UnsupportedVersionError struct {
 	// Version represents the obtained version number.
-	Version uint8
+	Version byte
 }
 
 // Error returns a string representation of an [UnsupportedVersionError].
@@ -26,7 +26,7 @@ func (e *UnsupportedVersionError) Error() string {
 // the header was not recognized by this package.
 type UnknownVersionError struct {
 	// Version represents the obtained version number.
-	Version uint8
+	Version byte
 }
 
 // Error returns a string representation of an [UnknownVersionError].
