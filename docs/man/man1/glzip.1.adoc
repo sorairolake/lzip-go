@@ -8,7 +8,6 @@
 :doctype: manpage
 :mansource: glzip 0.3.2
 :manmanual: General Commands Manual
-:includedir: ../include
 
 == NAME
 
