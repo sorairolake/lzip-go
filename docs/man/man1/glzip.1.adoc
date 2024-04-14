@@ -4,7 +4,7 @@
 
 = glzip(1)
 // Specify in UTC.
-:docdate: 2024-04-04
+:docdate: 2024-04-14
 :doctype: manpage
 :mansource: glzip 0.3.2
 :manmanual: General Commands Manual
@@ -44,7 +44,7 @@ _FILE_::
 
 *-dictionary-size* _BYTE_::
 
-  Set dictionary size in bytes.
+  Set dictionary size in bytes. Default is 8388608 (8 MiB).
 
 *-h*, *-help*::
 
@@ -76,9 +76,21 @@ Compress the given file:{blank}::
 
   $ *glzip test.txt*
 
+Keep the given file after compression:{blank}::
+
+  $ *glzip -keep test.txt*
+
+Compress with the specified dictionary size:{blank}::
+
+  $ *glzip -dictionary-size 4194304 test.txt*
+
 Decompress the given lzip file:{blank}::
 
   $ *glzip -decompress test.txt.lz*
+
+Write the decompressed result to standard output:{blank}::
+
+  $ *glzip -decompress -stdout test.txt.lz > test.txt*
 
 == REPORTING BUGS
 
