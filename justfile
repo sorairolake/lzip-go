@@ -41,6 +41,14 @@ lint: vet staticcheck
 @staticcheck:
     staticcheck ./...
 
+# Build `glzip` command
+@build-cmd:
+    go build ./cmd/glzip
+
+# Build `glzip(1)`
+@build-man:
+    asciidoctor -b manpage docs/man/man1/glzip.1.adoc
+
 # Run the linter for GitHub Actions workflow files
 @lint-github-actions:
     actionlint -verbose
