@@ -11,7 +11,7 @@ import (
 	"github.com/sorairolake/lzip-go"
 )
 
-const version = "0.3.2"
+const version = "0.3.3"
 
 type options struct {
 	version        bool

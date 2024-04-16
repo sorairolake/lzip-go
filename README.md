@@ -42,6 +42,16 @@ To install:
 go install github.com/sorairolake/lzip-go/cmd/glzip@latest
 ```
 
+To build:
+
+```sh
+# command-line utility
+just build-cmd
+
+# man page
+just build-man
+```
+
 See [`glzip(1)`] for details.
 
 ## Minimum Go version
