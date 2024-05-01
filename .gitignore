@@ -8,9 +8,13 @@
 *.dll
 *.so
 *.dylib
+/glzip
 
 # Test binary, built with `go test -c`
 *.test
+
+# Generated man page
+glzip.1
 
 # GoReleaser
 dist/
