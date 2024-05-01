@@ -50,6 +50,11 @@ go install github.com/sorairolake/lzip-go/cmd/glzip@latest
 | ----- | --------------- | ------------------------------------ |
 | _Any_ | [Homebrew]      | `brew install sorairolake/tap/glzip` |
 
+#### From binaries
+
+The [release page] contains pre-built binaries for Linux, macOS, Windows and
+others.
+
 #### How to build
 
 ```sh
@@ -103,6 +108,7 @@ licensing information.
 [Go]: https://go.dev/
 [`example_test.go`]: example_test.go
 [Homebrew]: https://brew.sh/
+[release page]: https://github.com/sorairolake/lzip-go/releases
 [`glzip(1)`]: docs/man/man1/glzip.1.adoc
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
