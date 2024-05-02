@@ -6,7 +6,7 @@
 // Specify in UTC.
 :docdate: 2024-04-14
 :doctype: manpage
-:mansource: glzip 0.3.3
+:mansource: glzip 0.3.4
 :manmanual: General Commands Manual
 
 == NAME
