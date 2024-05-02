@@ -7,7 +7,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 )
 
@@ -34,13 +33,15 @@ func main() {
 	if !opt.decompress {
 		for _, file := range args {
 			if err := compress(file, output, opt); err != nil {
-				log.Fatal(err)
+				fmt.Fprintln(os.Stderr, err)
+				os.Exit(1)
 			}
 		}
 	} else {
 		for _, file := range args {
 			if err := uncompress(file, output, opt); err != nil {
-				log.Fatal(err)
+				fmt.Fprintln(os.Stderr, err)
+				os.Exit(1)
 			}
 		}
 	}

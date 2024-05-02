@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2024 Shun Sakai
+#
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+$ glzip -decompress -stdout fox_bm.lz --> FAIL
+lzip: invalid magic number
+
+$ glzip -decompress -stdout fox_das46.lz --> FAIL
+lzma: wrong uncompressed data size
+
+$ glzip -decompress -stdout fox_de20.lz --> FAIL
+writeMatch: distance out of range
+
+$ glzip -decompress -stdout fox_s11.lz --> FAIL
+lzip: dictionary size is too small
+
+$ glzip -decompress -stdout fox_v2.lz --> FAIL
+lzip: unknown version number

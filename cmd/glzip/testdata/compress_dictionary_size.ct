@@ -1,0 +1,15 @@
+# SPDX-FileCopyrightText: 2024 Shun Sakai
+#
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+$ glzip -dictionary-size 4194304 foo.txt
+$ cat foo.txt --> FAIL
+$ glzip -decompress foo.txt.lz
+$ cat foo.txt
+Hello, world!
+
+$ glzip -dictionary-size 4095 foo.txt --> FAIL
+lzip: dictionary size is too small
+
+$ glzip -dictionary-size 536870913 foo.txt --> FAIL
+lzip: dictionary size is too large
