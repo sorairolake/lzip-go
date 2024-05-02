@@ -41,9 +41,13 @@ lint: vet staticcheck
 @staticcheck:
     staticcheck ./...
 
-# Build `glzip` command
-@build-cmd:
+# Build `glzip` command in debug mode
+@build-cmd-debug $CGO_ENABLED="0":
     go build ./cmd/glzip
+
+# Build `glzip` command in release mode
+@build-cmd-release $CGO_ENABLED="0":
+    go build -ldflags="-s -w" -trimpath ./cmd/glzip
 
 # Build `glzip(1)`
 @build-man:

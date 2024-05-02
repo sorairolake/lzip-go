@@ -36,13 +36,26 @@ See the [documentation][reference-url] for more details.
 This package includes a simple command-line utility for reading and writing of
 lzip format compressed files.
 
-To install:
+### Installation
+
+#### From source
 
 ```sh
 go install github.com/sorairolake/lzip-go/cmd/glzip@latest
 ```
 
-To build:
+#### Via a package manager
+
+| OS    | Package manager | Command                              |
+| ----- | --------------- | ------------------------------------ |
+| _Any_ | [Homebrew]      | `brew install sorairolake/tap/glzip` |
+
+#### From binaries
+
+The [release page] contains pre-built binaries for Linux, macOS, Windows and
+others.
+
+#### How to build
 
 ```sh
 # command-line utility
@@ -52,7 +65,9 @@ just build-cmd
 just build-man
 ```
 
-See [`glzip(1)`] for details.
+### Usage
+
+Please see [`glzip(1)`].
 
 ## Minimum Go version
 
@@ -92,6 +107,8 @@ licensing information.
 [lzip compressed format]: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
 [Go]: https://go.dev/
 [`example_test.go`]: example_test.go
+[Homebrew]: https://brew.sh/
+[release page]: https://github.com/sorairolake/lzip-go/releases
 [`glzip(1)`]: docs/man/man1/glzip.1.adoc
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc

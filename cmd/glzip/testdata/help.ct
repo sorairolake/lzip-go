@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2024 Shun Sakai
+#
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+$ glzip -h
+Usage: glzip [OPTIONS] <FILE>...
+  -decompress
+    	Decompress data
+  -dictionary-size uint
+    	Set dictionary size in bytes (default 8388608)
+  -keep
+    	Keep input files
+  -stdout
+    	Write to standard output, keep input files
+  -version
+    	Print version number
+
+$ glzip -help
+Usage: glzip [OPTIONS] <FILE>...
+  -decompress
+    	Decompress data
+  -dictionary-size uint
+    	Set dictionary size in bytes (default 8388608)
+  -keep
+    	Keep input files
+  -stdout
+    	Write to standard output, keep input files
+  -version
+    	Print version number
