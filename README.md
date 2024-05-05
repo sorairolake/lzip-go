@@ -57,13 +57,20 @@ others.
 
 #### How to build
 
-```sh
-# command-line utility
-just build-cmd
+To build the command-line utility:
 
-# man page
+```sh
+just build-cmd
+```
+
+To build a man page:
+
+```sh
 just build-man
 ```
+
+The man page is generated in `docs/man/man1`. Note that [Asciidoctor] is
+required when building the man page.
 
 ### Usage
 
@@ -109,6 +116,7 @@ licensing information.
 [`example_test.go`]: example_test.go
 [Homebrew]: https://brew.sh/
 [release page]: https://github.com/sorairolake/lzip-go/releases
+[Asciidoctor]: https://asciidoctor.org/
 [`glzip(1)`]: docs/man/man1/glzip.1.adoc
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
