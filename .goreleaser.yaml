@@ -43,7 +43,7 @@ archives:
       - README.md
 
 checksum:
-  algorithm: blake2b
+  algorithm: sha3-512
 
 changelog:
   sort: asc
