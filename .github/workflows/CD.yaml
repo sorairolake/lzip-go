@@ -37,20 +37,20 @@ jobs:
           gem install asciidoctor
           asciidoctor -V
       - name: Check `.goreleaser.yaml`
-        uses: goreleaser/goreleaser-action@v5.1.0
+        uses: goreleaser/goreleaser-action@v6.0.0
         with:
           distribution: "goreleaser"
           version: "latest"
           args: check
       - name: Check GoReleaser
-        uses: goreleaser/goreleaser-action@v5.1.0
+        uses: goreleaser/goreleaser-action@v6.0.0
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           distribution: "goreleaser"
           version: "latest"
           args: release --clean --snapshot
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5.1.0
+        uses: goreleaser/goreleaser-action@v6.0.0
         if: startsWith(github.ref, 'refs/tags/')
         with:
           distribution: "goreleaser"
