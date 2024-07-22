@@ -44,12 +44,6 @@ lzip format compressed files.
 go install github.com/sorairolake/lzip-go/cmd/glzip@latest
 ```
 
-#### Via a package manager
-
-| OS    | Package manager | Command                              |
-| ----- | --------------- | ------------------------------------ |
-| _Any_ | [Homebrew]      | `brew install sorairolake/tap/glzip` |
-
 #### From binaries
 
 The [release page] contains pre-built binaries for Linux, macOS, Windows and
@@ -114,7 +108,6 @@ licensing information.
 [lzip compressed format]: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
 [Go]: https://go.dev/
 [`example_test.go`]: example_test.go
-[Homebrew]: https://brew.sh/
 [release page]: https://github.com/sorairolake/lzip-go/releases
 [Asciidoctor]: https://asciidoctor.org/
 [`glzip(1)`]: docs/man/man1/glzip.1.adoc
