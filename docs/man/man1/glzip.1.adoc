@@ -6,7 +6,7 @@
 // Specify in UTC.
 :docdate: 2024-08-01
 :doctype: manpage
-:mansource: glzip 0.3.4
+:mansource: glzip 0.3.5
 :manmanual: General Commands Manual
 :lzip-spec-url: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
 
