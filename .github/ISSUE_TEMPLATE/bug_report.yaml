@@ -47,7 +47,7 @@ body:
     attributes:
       label: Go version
       description: Output of `go version`.
-      placeholder: 1.22
+      placeholder: "1.22"
     validations:
       required: true
 

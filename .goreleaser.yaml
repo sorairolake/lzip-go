@@ -29,7 +29,7 @@ builds:
       - arm64
 
 archives:
-  - format: tar.gz
+  - format: tar.zst
     # use zip for windows archives
     format_overrides:
       - goos: windows
@@ -41,6 +41,9 @@ archives:
       - docs/man/man1/glzip.1
       - LICENSES/*
       - README.md
+
+checksum:
+  algorithm: sha3-512
 
 changelog:
   sort: asc

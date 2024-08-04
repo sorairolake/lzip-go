@@ -44,12 +44,6 @@ lzip format compressed files.
 go install github.com/sorairolake/lzip-go/cmd/glzip@latest
 ```
 
-#### Via a package manager
-
-| OS    | Package manager | Command                              |
-| ----- | --------------- | ------------------------------------ |
-| _Any_ | [Homebrew]      | `brew install sorairolake/tap/glzip` |
-
 #### From binaries
 
 The [release page] contains pre-built binaries for Linux, macOS, Windows and
@@ -57,13 +51,20 @@ others.
 
 #### How to build
 
-```sh
-# command-line utility
-just build-cmd
+To build the command-line utility:
 
-# man page
+```sh
+just build-cmd
+```
+
+To build a man page:
+
+```sh
 just build-man
 ```
+
+The man page is generated in `docs/man/man1`. Note that [Asciidoctor] is
+required when building the man page.
 
 ### Usage
 
@@ -95,7 +96,7 @@ Copyright &copy; 2024 Shun Sakai (see [AUTHORS.adoc])
 This package is distributed under the terms of either the _Apache License 2.0_
 or the _MIT License_.
 
-This project is compliant with version 3.0 of the [_REUSE Specification_]. See
+This project is compliant with version 3.2 of the [_REUSE Specification_]. See
 copyright notices of individual files for more details on copyright and
 licensing information.
 
@@ -107,8 +108,8 @@ licensing information.
 [lzip compressed format]: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
 [Go]: https://go.dev/
 [`example_test.go`]: example_test.go
-[Homebrew]: https://brew.sh/
 [release page]: https://github.com/sorairolake/lzip-go/releases
+[Asciidoctor]: https://asciidoctor.org/
 [`glzip(1)`]: docs/man/man1/glzip.1.adoc
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc

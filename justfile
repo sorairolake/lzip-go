@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0 OR MIT
 
 alias all := default
+alias build-cmd := build-cmd-debug
 
 # Run default recipe
 default: test
