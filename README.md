@@ -23,10 +23,6 @@ To install this package:
 go get -u github.com/sorairolake/lzip-go
 ```
 
-### Example
-
-Please see [`example_test.go`].
-
 ### Documentation
 
 See the [documentation][reference-url] for more details.
@@ -117,7 +113,6 @@ licensing information.
 [go-version-badge]: https://img.shields.io/github/go-mod/go-version/sorairolake/lzip-go?style=for-the-badge&logo=go
 [lzip compressed format]: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
 [Go]: https://go.dev/
-[`example_test.go`]: example_test.go
 [release page]: https://github.com/sorairolake/lzip-go/releases
 [Asciidoctor]: https://asciidoctor.org/
 [`glzip(1)`]: docs/man/man1/glzip.1.adoc
