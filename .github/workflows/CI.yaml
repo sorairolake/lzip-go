@@ -19,13 +19,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os:
-          - ubuntu-24.04
-          - macos-14
-          - windows-2022
-        go-version:
-          - "1.22" # Go version
-          - "stable"
+        os-alias:
+          - ubuntu
+          - macos
+          - windows
+        go-version-alias:
+          - minimum
+          - stable
+        include:
+          - os-alias: ubuntu
+            os: ubuntu-24.04
+          - os-alias: macos
+            os: macos-14
+          - os-alias: windows
+            os: windows-2022
+          - go-version-alias: minimum
+            go-version: "1.22"
+          - go-version-alias: stable
+            go-version: "stable"
     steps:
       - name: Set Git to use LF
         if: matrix.os == 'windows-2022'
