@@ -97,7 +97,7 @@ decode LZMA streams.
 
 ## License
 
-Copyright &copy; 2024 Shun Sakai (see [AUTHORS.adoc])
+Copyright (C) 2024 Shun Sakai (see [AUTHORS.adoc])
 
 This package is distributed under the terms of either the _Apache License 2.0_
 or the _MIT License_.
