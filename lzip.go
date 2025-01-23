@@ -8,7 +8,6 @@
 // See the following for the specification:
 //
 //   - https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
-//   - https://datatracker.ietf.org/doc/html/draft-diaz-lzip-10#section-2
 package lzip
 
 import (
