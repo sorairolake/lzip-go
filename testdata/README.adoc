@@ -6,8 +6,8 @@
 :lzd-url: https://www.nongnu.org/lzip/lzd.html
 :lzd-download-url: https://download.savannah.gnu.org/releases/lzip/lzd
 
-Test data files imported those of {lzd-url}[lzd] version 1.4.
+Test data files imported those of {lzd-url}[lzd] version 1.5.
 
 .These can be obtained from either
-* {lzd-download-url}/lzd-1.4.tar.lz
-* {lzd-download-url}/lzd-1.4.tar.gz
+* {lzd-download-url}/lzd-1.5.tar.lz
+* {lzd-download-url}/lzd-1.5.tar.gz
