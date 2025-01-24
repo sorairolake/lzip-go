@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-= Tests
+= Test Data
 :lzd-url: https://www.nongnu.org/lzip/lzd.html
 :lzd-download-url: https://download.savannah.gnu.org/releases/lzip/lzd
 
