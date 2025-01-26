@@ -2,12 +2,11 @@
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-// Package lzip implements reading and writing of lzip format compressed files.
-// The package supports version 1 of the specification.
+// Package lzip implements the [lzip compressed format].
 //
-// See the following for the specification:
+// The package supports version 1 of the lzip format.
 //
-//   - https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
+// [lzip compressed format]: https://www.nongnu.org/lzip/manual/lzip_manual.html#File-format
 package lzip
 
 import (
