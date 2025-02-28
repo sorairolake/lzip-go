@@ -34,7 +34,7 @@ jobs:
           - os-alias: windows
             os: windows-2022
           - go-version-alias: minimum
-            go-version: "1.22"
+            go-version: "1.23.0"
           - go-version-alias: stable
             go-version: "stable"
     steps:

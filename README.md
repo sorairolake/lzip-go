@@ -68,7 +68,7 @@ Please see [`glzip(1)`].
 
 ## Minimum Go version
 
-This package requires the minimum version of Go 1.22.
+This package requires the minimum version of Go 1.23.0.
 
 ## Source code
 
