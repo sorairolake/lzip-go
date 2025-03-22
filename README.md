@@ -121,4 +121,4 @@ licensing information.
 [`compress/gzip`]: https://pkg.go.dev/compress/gzip
 [`github.com/ulikunitz/xz/lzma`]: https://pkg.go.dev/github.com/ulikunitz/xz/lzma
 [AUTHORS.adoc]: AUTHORS.adoc
-[_REUSE Specification_]: https://reuse.software/spec/
+[_REUSE Specification_]: https://reuse.software/spec-3.3/
