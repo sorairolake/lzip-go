@@ -19,13 +19,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os:
-          - ubuntu-22.04
-          - macos-14
-          - windows-2022
-        go-version:
-          - "1.22" # Go version
-          - "stable"
+        os-alias:
+          - ubuntu
+          - macos
+          - windows
+        go-version-alias:
+          - minimum
+          - stable
+        include:
+          - os-alias: ubuntu
+            os: ubuntu-24.04
+          - os-alias: macos
+            os: macos-14
+          - os-alias: windows
+            os: windows-2022
+          - go-version-alias: minimum
+            go-version: "1.23.0"
+          - go-version-alias: stable
+            go-version: "stable"
     steps:
       - name: Set Git to use LF
         if: matrix.os == 'windows-2022'
@@ -43,7 +54,7 @@ jobs:
 
   golangci-lint:
     name: golangci-lint
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -52,7 +63,7 @@ jobs:
         with:
           go-version: "stable"
       - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v6.1.0
+        uses: golangci/golangci-lint-action@v6.5.1
         with:
           version: "latest"
           args: -E gofmt,goimports -v

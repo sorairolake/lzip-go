@@ -42,6 +42,31 @@ func TestReader(t *testing.T) {
 	}
 }
 
+func TestReaderFromEmpty(t *testing.T) {
+	t.Parallel()
+
+	file, err := os.Open("testdata/em.lz")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	reader, err := lzip.NewReader(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var buf bytes.Buffer
+	if _, err := io.Copy(&buf, reader); err != nil {
+		t.Fatal(err)
+	}
+
+	data := []byte{}
+
+	if !bytes.Equal(buf.Bytes(), data) {
+		t.Error("unexpected mismatch between uncompressed data and test data")
+	}
+}
+
 func TestReaderInvalidMagic(t *testing.T) {
 	t.Parallel()
 
@@ -102,5 +127,18 @@ func TestReaderDictSizeTooSmall(t *testing.T) {
 
 	if size := dictSizeTooSmallError.DictSize; size != expected {
 		t.Errorf("expected too small dictionary size `%v`, got `%v`", expected, size)
+	}
+}
+
+func TestReaderNonZeroFirstByte(t *testing.T) {
+	t.Parallel()
+
+	file, err := os.Open("testdata/fox_nz.lz")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if _, err := lzip.NewReader(file); err == nil {
+		t.Error("unexpected success")
 	}
 }

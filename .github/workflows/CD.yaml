@@ -16,7 +16,7 @@ permissions:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -29,26 +29,26 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2
+          ruby-version: 3.3
       - name: Install Asciidoctor
         run: |
           gem install asciidoctor
           asciidoctor -V
       - name: Check `.goreleaser.yaml`
-        uses: goreleaser/goreleaser-action@v6.0.0
+        uses: goreleaser/goreleaser-action@v6.2.1
         with:
           distribution: "goreleaser"
           version: "latest"
           args: check
       - name: Check GoReleaser
-        uses: goreleaser/goreleaser-action@v6.0.0
+        uses: goreleaser/goreleaser-action@v6.2.1
         if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         with:
           distribution: "goreleaser"
           version: "latest"
           args: release --clean --snapshot
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v6.0.0
+        uses: goreleaser/goreleaser-action@v6.2.1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           distribution: "goreleaser"
