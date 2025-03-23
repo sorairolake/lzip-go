@@ -5,7 +5,7 @@
 = glzip(1)
 // Specify in UTC.
 :docdate: 2024-08-01
-:revnumber: 0.3.6
+:revnumber: 0.3.7
 :doctype: manpage
 :mansource: glzip {revnumber}
 :manmanual: General Commands Manual
