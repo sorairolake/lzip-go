@@ -30,13 +30,23 @@ func copyFile(srcFile, dstFile string) error {
 	if err != nil {
 		return err
 	}
-	defer src.Close()
+
+	defer func() {
+		if e := src.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	dst, err := os.Create(dstFile)
 	if err != nil {
 		return err
 	}
-	defer dst.Close()
+
+	defer func() {
+		if e := dst.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	_, err = io.Copy(dst, src)
 	if err != nil {
@@ -62,7 +72,11 @@ func TestCLI(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	defer os.Remove("glzip")
+	defer func() {
+		if err := os.Remove("glzip"); err != nil {
+			t.Fatal(err)
+		}
+	}()
 
 	ts, err := cmdtest.Read("testdata")
 	if err != nil {

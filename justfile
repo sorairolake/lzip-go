@@ -18,7 +18,7 @@ test:
 
 # Run `golangci-lint run`
 golangci-lint:
-    go tool golangci-lint run -E gofmt,goimports
+    go tool golangci-lint run
 
 # Run the formatter
 fmt: gofmt goimports

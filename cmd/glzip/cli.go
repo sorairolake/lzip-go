@@ -7,6 +7,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 
 	"github.com/sorairolake/lzip-go"
 )
@@ -31,7 +32,10 @@ func init() {
 	flag.UintVar(&opt.dictionarySize, "dictionary-size", lzip.DefaultDictSize, "Set dictionary size in bytes")
 
 	flag.Usage = func() {
-		fmt.Fprintf(flag.CommandLine.Output(), "Usage: glzip [OPTIONS] <FILE>...\n")
+		if _, err := fmt.Fprintf(flag.CommandLine.Output(), "Usage: glzip [OPTIONS] <FILE>...\n"); err != nil {
+			log.Fatal(err)
+		}
+
 		flag.PrintDefaults()
 	}
 }

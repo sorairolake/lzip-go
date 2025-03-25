@@ -34,7 +34,7 @@ jobs:
           - os-alias: windows
             os: windows-2022
           - go-version-alias: minimum
-            go-version: "1.23.0"
+            go-version: "1.24.1"
           - go-version-alias: stable
             go-version: "stable"
     steps:
@@ -63,7 +63,7 @@ jobs:
         with:
           go-version: "stable"
       - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v6.5.1
+        uses: golangci/golangci-lint-action@v7.0.0
         with:
           version: "latest"
-          args: -E gofmt,goimports -v
+          args: -v

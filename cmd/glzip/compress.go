@@ -12,7 +12,7 @@ import (
 	"github.com/sorairolake/lzip-go"
 )
 
-func compress(file string, output *os.File, opt options) error {
+func compress(file string, output *os.File, opt options) (err error) {
 	if !opt.stdout {
 		out, err := os.Create(file + ".lz")
 		if err != nil {
@@ -22,24 +22,42 @@ func compress(file string, output *os.File, opt options) error {
 		output = out
 	}
 
-	defer output.Close()
+	defer func() {
+		if e := output.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	writerOpt := &lzip.WriterOptions{DictSize: uint32(opt.dictionarySize)}
 
 	bufWriter := bufio.NewWriter(output)
-	defer bufWriter.Flush()
+	defer func() {
+		if e := bufWriter.Flush(); e != nil {
+			err = e
+		}
+	}()
 
 	writer, err := lzip.NewWriterOptions(bufWriter, writerOpt)
 	if err != nil {
 		return err
 	}
-	defer writer.Close()
+
+	defer func() {
+		if e := writer.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	input, err := os.Open(file)
 	if err != nil {
 		return err
 	}
-	defer input.Close()
+
+	defer func() {
+		if e := input.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	if _, err := io.Copy(writer, input); err != nil {
 		return err

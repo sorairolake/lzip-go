@@ -52,7 +52,12 @@ func ExampleReader() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
+
+	defer func() {
+		if err := file.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	reader, err := lzip.NewReader(bufio.NewReader(file))
 	if err != nil {
