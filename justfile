@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0 OR MIT
 
+alias fmt := golangci-lint-fmt
+alias lint := golangci-lint-run
 alias build-cmd := build-cmd-debug
 
 # Run default recipe
@@ -16,31 +18,16 @@ clean:
 test:
     go test ./...
 
-# Run `golangci-lint run`
-golangci-lint:
-    go tool golangci-lint run
+# Run `golangci-lint`
+golangci-lint: golangci-lint-fmt golangci-lint-run
 
 # Run the formatter
-fmt: gofmt goimports
-
-# Run `go fmt`
-gofmt:
-    go fmt ./...
-
-# Run `goimports`
-goimports:
-    fd -e go -x go tool goimports -w
+golangci-lint-fmt:
+    go tool golangci-lint fmt
 
 # Run the linter
-lint: vet staticcheck
-
-# Run `go vet`
-vet:
-    go vet ./...
-
-# Run `staticcheck`
-staticcheck:
-    go tool staticcheck ./...
+golangci-lint-run:
+    go tool golangci-lint run
 
 # Run `pkgsite`
 pkgsite:
