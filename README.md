@@ -75,11 +75,6 @@ This package requires the minimum version of Go 1.22.
 The upstream repository is available at
 <https://github.com/sorairolake/lzip-go.git>.
 
-The source code is also available at:
-
-- <https://gitlab.com/sorairolake/lzip-go.git>
-- <https://codeberg.org/sorairolake/lzip-go.git>
-
 ## Changelog
 
 Please see [CHANGELOG.adoc].
