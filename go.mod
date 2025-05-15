@@ -6,8 +6,6 @@ module github.com/sorairolake/lzip-go
 
 go 1.22
 
-toolchain go1.24.2
-
 require (
 	github.com/google/go-cmdtest v0.4.0
 	github.com/ulikunitz/xz v0.5.12
