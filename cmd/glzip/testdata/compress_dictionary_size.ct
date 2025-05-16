@@ -9,7 +9,7 @@ $ cat foo.txt
 Hello, world!
 
 $ glzip -dictionary-size 4095 foo.txt --> FAIL
-lzip: dictionary size is too small
+glzip: lzip: dictionary size is too small
 
 $ glzip -dictionary-size 536870913 foo.txt --> FAIL
-lzip: dictionary size is too large
+glzip: lzip: dictionary size is too large
