@@ -13,12 +13,17 @@ import (
 	"github.com/sorairolake/lzip-go"
 )
 
-func uncompress(file string, output *os.File, opt options) error {
+func uncompress(file string, output *os.File, opt options) (err error) {
 	input, err := os.Open(file)
 	if err != nil {
 		return err
 	}
-	defer input.Close()
+
+	defer func() {
+		if e := input.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	bufReader := bufio.NewReader(input)
 
@@ -36,7 +41,11 @@ func uncompress(file string, output *os.File, opt options) error {
 		output = out
 	}
 
-	defer output.Close()
+	defer func() {
+		if e := output.Close(); e != nil {
+			err = e
+		}
+	}()
 
 	if _, err := io.Copy(output, reader); err != nil {
 		return err

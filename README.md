@@ -1,7 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2024 Shun Sakai
 
-SPDX-License-Identifier: Apache-2.0 OR MIT
+SPDX-License-Identifier: CC-BY-4.0
 -->
 
 # lzip-go
@@ -68,17 +68,12 @@ Please see [`glzip(1)`].
 
 ## Minimum Go version
 
-This package requires the minimum version of Go 1.23.0.
+This package requires the minimum version of Go 1.22.
 
 ## Source code
 
 The upstream repository is available at
 <https://github.com/sorairolake/lzip-go.git>.
-
-The source code is also available at:
-
-- <https://gitlab.com/sorairolake/lzip-go.git>
-- <https://codeberg.org/sorairolake/lzip-go.git>
 
 ## Changelog
 

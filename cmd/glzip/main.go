@@ -33,14 +33,14 @@ func main() {
 	if !opt.decompress {
 		for _, file := range args {
 			if err := compress(file, output, opt); err != nil {
-				fmt.Fprintln(os.Stderr, err)
+				fmt.Fprintf(os.Stderr, "glzip: %v\n", err)
 				os.Exit(1)
 			}
 		}
 	} else {
 		for _, file := range args {
 			if err := uncompress(file, output, opt); err != nil {
-				fmt.Fprintln(os.Stderr, err)
+				fmt.Fprintf(os.Stderr, "glzip: %v\n", err)
 				os.Exit(1)
 			}
 		}
