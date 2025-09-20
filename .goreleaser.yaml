@@ -43,7 +43,7 @@ archives:
       - README.md
 
 checksum:
-  algorithm: sha3-512
+  algorithm: sha256
 
 changelog:
   sort: asc
