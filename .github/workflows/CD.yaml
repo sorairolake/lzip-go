@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
       - name: Setup Go environment
         uses: actions/setup-go@v6
         with:
