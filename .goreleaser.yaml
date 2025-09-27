@@ -19,13 +19,18 @@ builds:
       - CGO_ENABLED=0
     goos:
       - darwin
+      - dragonfly
       - freebsd
       - linux
+      - netbsd
       - openbsd
       - windows
     goarch:
       - amd64
       - arm64
+      - ppc64le
+      - riscv64
+      - s390x
 
 archives:
   - formats: [tar.zst]
