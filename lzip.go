@@ -20,8 +20,10 @@ const (
 	trailerSize = 20
 )
 
-const magic = "LZIP"
-const magicSize = 4
+const (
+	magic     = "LZIP"
+	magicSize = 4
+)
 
 type version byte
 

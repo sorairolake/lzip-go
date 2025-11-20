@@ -29,7 +29,12 @@ func init() {
 	flag.BoolVar(&opt.stdout, "stdout", false, "Write to standard output, keep input files")
 	flag.BoolVar(&opt.decompress, "decompress", false, "Decompress data")
 	flag.BoolVar(&opt.keep, "keep", false, "Keep input files")
-	flag.UintVar(&opt.dictionarySize, "dictionary-size", lzip.DefaultDictSize, "Set dictionary size in bytes")
+	flag.UintVar(
+		&opt.dictionarySize,
+		"dictionary-size",
+		lzip.DefaultDictSize,
+		"Set dictionary size in bytes",
+	)
 
 	flag.Usage = func() {
 		if _, err := fmt.Fprintf(flag.CommandLine.Output(), "Usage: glzip [OPTIONS] <FILE>...\n"); err != nil {

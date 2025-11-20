@@ -55,7 +55,6 @@ func NewReader(r io.Reader) (*Reader, error) {
 	}
 
 	rb, err := io.ReadAll(r)
-
 	if err != nil {
 		return nil, err
 	}

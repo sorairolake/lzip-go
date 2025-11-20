@@ -5,4 +5,4 @@
 version = "2"
 
 [formatters]
-enable = ["gofmt", "goimports"]
+enable = ["gci", "gofmt", "gofumpt", "goimports", "golines"]

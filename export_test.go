@@ -9,8 +9,10 @@ const (
 	TrailerSize = trailerSize
 )
 
-const Magic = magic
-const MagicSize = magicSize
+const (
+	Magic     = magic
+	MagicSize = magicSize
+)
 
 const (
 	Version0 = version0
