@@ -37,7 +37,10 @@ func init() {
 	)
 
 	flag.Usage = func() {
-		if _, err := fmt.Fprintf(flag.CommandLine.Output(), "Usage: glzip [OPTIONS] <FILE>...\n"); err != nil {
+		if _, err := fmt.Fprintf(
+			flag.CommandLine.Output(),
+			"Usage: glzip [OPTIONS] <FILE>...\n",
+		); err != nil {
 			log.Fatal(err)
 		}
 
