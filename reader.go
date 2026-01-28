@@ -44,7 +44,7 @@ func NewReader(r io.Reader) (*Reader, error) {
 		return nil, &UnknownVersionError{v}
 	}
 
-	dictSize := uint32(1 << (header[5] & 0x1f))
+	dictSize := uint32(1 << (header[5] & 0x1F))
 	dictSize -= (dictSize / 16) * uint32((header[5]>>5)&0x07)
 
 	switch {

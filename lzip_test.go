@@ -30,7 +30,7 @@ func TestTrailerSize(t *testing.T) {
 func TestMagic(t *testing.T) {
 	t.Parallel()
 
-	expected := [lzip.MagicSize]byte{0x4c, 0x5a, 0x49, 0x50}
+	expected := [lzip.MagicSize]byte{0x4C, 0x5A, 0x49, 0x50}
 	if !slices.Equal([]byte(lzip.Magic), expected[:]) {
 		t.Error("unexpected magic number")
 	}
