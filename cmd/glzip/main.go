@@ -12,6 +12,7 @@ import (
 
 func main() {
 	flag.Parse()
+
 	args := flag.Args()
 
 	if opt.version {
@@ -32,14 +33,16 @@ func main() {
 
 	if !opt.decompress {
 		for _, file := range args {
-			if err := compress(file, output, opt); err != nil {
+			err := compress(file, output, opt)
+			if err != nil {
 				fmt.Fprintf(os.Stderr, "glzip: %v\n", err)
 				os.Exit(1)
 			}
 		}
 	} else {
 		for _, file := range args {
-			if err := uncompress(file, output, opt); err != nil {
+			err := uncompress(file, output, opt)
+			if err != nil {
 				fmt.Fprintf(os.Stderr, "glzip: %v\n", err)
 				os.Exit(1)
 			}

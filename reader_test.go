@@ -142,3 +142,67 @@ func TestReaderNonZeroFirstByte(t *testing.T) {
 		t.Error("unexpected success")
 	}
 }
+
+func TestReadInvalidCRC(t *testing.T) {
+	t.Parallel()
+
+	file, err := os.Open("testdata/fox_bcrc.lz")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	reader, err := lzip.NewReader(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var buf bytes.Buffer
+
+	_, err = io.Copy(&buf, reader)
+	if err == nil {
+		t.Fatal("unexpected success")
+	}
+
+	var invalidCRCError *lzip.InvalidCRCError
+	if !errors.As(err, &invalidCRCError) {
+		t.Fatal("unexpected error type")
+	}
+
+	const expected = 0xEB50_CC6B
+
+	if crc := invalidCRCError.CRC; crc != expected {
+		t.Errorf("expected CRC `%v`, got `%v`", expected, crc)
+	}
+}
+
+func TestReadInvalidMemberSize(t *testing.T) {
+	t.Parallel()
+
+	file, err := os.Open("testdata/fox_mes81.lz")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	reader, err := lzip.NewReader(file)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var buf bytes.Buffer
+
+	_, err = io.Copy(&buf, reader)
+	if err == nil {
+		t.Fatal("unexpected success")
+	}
+
+	var invalidMemberSizeError *lzip.InvalidMemberSizeError
+	if !errors.As(err, &invalidMemberSizeError) {
+		t.Fatal("unexpected error type")
+	}
+
+	const expected = 81
+
+	if memberSize := invalidMemberSizeError.MemberSize; memberSize != expected {
+		t.Errorf("expected member size `%v`, got `%v`", expected, memberSize)
+	}
+}

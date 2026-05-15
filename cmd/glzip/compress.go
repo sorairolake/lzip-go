@@ -23,7 +23,8 @@ func compress(file string, output *os.File, opt options) (err error) {
 	}
 
 	defer func() {
-		if e := output.Close(); e != nil {
+		e := output.Close()
+		if e != nil {
 			err = e
 		}
 	}()
@@ -31,8 +32,10 @@ func compress(file string, output *os.File, opt options) (err error) {
 	writerOpt := &lzip.WriterOptions{DictSize: uint32(opt.dictionarySize)}
 
 	bufWriter := bufio.NewWriter(output)
+
 	defer func() {
-		if e := bufWriter.Flush(); e != nil {
+		e := bufWriter.Flush()
+		if e != nil {
 			err = e
 		}
 	}()
@@ -43,7 +46,8 @@ func compress(file string, output *os.File, opt options) (err error) {
 	}
 
 	defer func() {
-		if e := writer.Close(); e != nil {
+		e := writer.Close()
+		if e != nil {
 			err = e
 		}
 	}()
@@ -54,7 +58,8 @@ func compress(file string, output *os.File, opt options) (err error) {
 	}
 
 	defer func() {
-		if e := input.Close(); e != nil {
+		e := input.Close()
+		if e != nil {
 			err = e
 		}
 	}()
@@ -64,7 +69,8 @@ func compress(file string, output *os.File, opt options) (err error) {
 	}
 
 	if !opt.keep {
-		if err := os.Remove(file); err != nil {
+		err := os.Remove(file)
+		if err != nil {
 			return err
 		}
 	}

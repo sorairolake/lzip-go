@@ -25,6 +25,7 @@ func TestWriter(t *testing.T) {
 	text := string(data)
 
 	var buf bytes.Buffer
+
 	writer := lzip.NewWriter(&buf)
 
 	n, err := io.WriteString(writer, text)
@@ -160,6 +161,7 @@ func TestVerifyWriterOptions(t *testing.T) {
 	}
 
 	var expected uint32 = (1 << 12) - 1
+
 	opt = &lzip.WriterOptions{expected}
 
 	err := opt.Verify()
