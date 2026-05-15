@@ -32,7 +32,8 @@ func copyFile(srcFile, dstFile string) error {
 	}
 
 	defer func() {
-		if e := src.Close(); e != nil {
+		e := src.Close()
+		if e != nil {
 			err = e
 		}
 	}()
@@ -43,7 +44,8 @@ func copyFile(srcFile, dstFile string) error {
 	}
 
 	defer func() {
-		if e := dst.Close(); e != nil {
+		e := dst.Close()
+		if e != nil {
 			err = e
 		}
 	}()
@@ -73,7 +75,8 @@ func TestCLI(t *testing.T) {
 	}
 
 	defer func() {
-		if err := os.Remove("glzip"); err != nil {
+		err := os.Remove("glzip")
+		if err != nil {
 			t.Fatal(err)
 		}
 	}()

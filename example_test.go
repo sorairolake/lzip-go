@@ -54,7 +54,8 @@ func ExampleReader() {
 	}
 
 	defer func() {
-		if err := file.Close(); err != nil {
+		err := file.Close()
+		if err != nil {
 			log.Fatal(err)
 		}
 	}()
@@ -80,13 +81,15 @@ func ExampleWriter() {
 	const text = "The quick brown fox jumps over the lazy dog."
 
 	var buf bytes.Buffer
+
 	writer := lzip.NewWriter(&buf)
 
 	if _, err := io.WriteString(writer, text); err != nil {
 		log.Fatal(err)
 	}
 
-	if err := writer.Close(); err != nil {
+	err := writer.Close()
+	if err != nil {
 		log.Fatal(err)
 	}
 

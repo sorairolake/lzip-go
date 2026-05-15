@@ -60,6 +60,7 @@ func NewReader(r io.Reader) (*Reader, error) {
 	}
 
 	var lzmaHeader [lzma.HeaderLen]byte
+
 	lzmaHeader[0] = lzma.Properties{LC: 3, LP: 0, PB: 2}.Code()
 	binary.LittleEndian.PutUint32(lzmaHeader[1:5], dictSize)
 	copy(lzmaHeader[5:], rb[len(rb)-16:len(rb)-8])
@@ -85,39 +86,44 @@ func NewReader(r io.Reader) (*Reader, error) {
 
 // Read reads uncompressed data from the stream.
 func (z *Reader) Read(p []byte) (n int, err error) {
-	for n == 0 {
+	for {
 		n, err = z.decompressor.Read(p)
-		if err != nil {
-			return n, err
+
+		if n > 0 {
+			z.crc = crc32.Update(z.crc, crc32.IEEETable, p[:n])
+			z.dataSize += uint64(n)
+
+			return n, nil
 		}
 
-		z.crc = crc32.Update(z.crc, crc32.IEEETable, p[:n])
-		z.dataSize += uint64(n)
-
-		if !errors.Is(err, io.EOF) {
-			return n, err
+		if err == nil {
+			continue
 		}
 
-		var trailer [trailerSize]byte
-		if _, err := io.ReadFull(z.r, trailer[:]); err != nil {
-			return n, err
+		if errors.Is(err, io.EOF) {
+			var trailer [trailerSize]byte
+			if _, err := io.ReadFull(z.r, trailer[:]); err != nil {
+				return n, err
+			}
+
+			crc := binary.LittleEndian.Uint32(trailer[:4])
+			if crc != z.crc {
+				return n, &InvalidCRCError{crc}
+			}
+
+			dataSize := binary.LittleEndian.Uint64(trailer[4:12])
+			if dataSize != z.dataSize {
+				return n, &InvalidDataSizeError{dataSize}
+			}
+
+			memberSize := binary.LittleEndian.Uint64(trailer[12:])
+			if memberSize != z.memberSize {
+				return n, &InvalidMemberSizeError{memberSize}
+			}
+
+			return n, io.EOF
 		}
 
-		crc := binary.LittleEndian.Uint32(trailer[:4])
-		if crc != z.crc {
-			return n, &InvalidCRCError{crc}
-		}
-
-		dataSize := binary.LittleEndian.Uint64(trailer[4:12])
-		if dataSize != z.dataSize {
-			return n, &InvalidDataSizeError{dataSize}
-		}
-
-		memberSize := binary.LittleEndian.Uint64(trailer[12:])
-		if memberSize != z.memberSize {
-			return n, &InvalidMemberSizeError{memberSize}
-		}
+		return n, err
 	}
-
-	return n, nil
 }
