@@ -8,7 +8,7 @@ go 1.22
 
 require (
 	github.com/google/go-cmdtest v0.4.0
-	github.com/ulikunitz/xz v0.5.16
+	github.com/ulikunitz/xz v0.5.17
 )
 
 require (
