@@ -67,6 +67,35 @@ func TestReaderFromEmpty(t *testing.T) {
 	}
 }
 
+func TestReaderMultiMember(t *testing.T) {
+	t.Parallel()
+
+	var compressed bytes.Buffer
+	for _, data := range [][]byte{[]byte("hello "), []byte("world")} {
+		writer := lzip.NewWriter(&compressed)
+		if _, err := writer.Write(data); err != nil {
+			t.Fatal(err)
+		}
+		if err := writer.Close(); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	reader, err := lzip.NewReader(&compressed)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var buf bytes.Buffer
+	if _, err := io.Copy(&buf, reader); err != nil {
+		t.Fatal(err)
+	}
+
+	if got, want := buf.String(), "hello world"; got != want {
+		t.Errorf("got %q, want %q", got, want)
+	}
+}
+
 func TestReaderInvalidMagic(t *testing.T) {
 	t.Parallel()
 
