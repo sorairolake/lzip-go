@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: 2024 Shun Sakai
+# SPDX-FileCopyrightText: 2026 kota
 #
 # SPDX-License-Identifier: Apache-2.0 OR MIT
 
@@ -6,7 +7,8 @@ $ glzip -decompress -stdout fox_bm.lz --> FAIL
 glzip: lzip: invalid magic number
 
 $ glzip -decompress -stdout fox_das46.lz --> FAIL
-glzip: lzma: wrong uncompressed data size
+The quick brown fox jumps over the lazy dog.
+glzip: lzip: data size mismatch
 
 $ glzip -decompress -stdout fox_de20.lz --> FAIL
 glzip: writeMatch: distance out of range
