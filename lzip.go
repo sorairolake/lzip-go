@@ -70,7 +70,6 @@ func newHeader(dictSize uint32) *header {
 }
 
 type trailer struct {
-	crc        uint32
-	dataSize   uint64
-	memberSize uint64
+	crc      uint32
+	dataSize uint64
 }
