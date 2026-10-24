@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2024 Shun Sakai
+// SPDX-FileCopyrightText: 2026 kota
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
