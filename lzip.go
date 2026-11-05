@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2024 Shun Sakai
+// SPDX-FileCopyrightText: 2026 kota
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
@@ -70,7 +71,6 @@ func newHeader(dictSize uint32) *header {
 }
 
 type trailer struct {
-	crc        uint32
-	dataSize   uint64
-	memberSize uint64
+	crc      uint32
+	dataSize uint64
 }
