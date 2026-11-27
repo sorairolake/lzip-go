@@ -29,9 +29,9 @@ jobs:
           - stable
         include:
           - os-alias: ubuntu
-            os: ubuntu-24.04
+            os: ubuntu-26.04
           - os-alias: macos
-            os: macos-15
+            os: macos-26
           - os-alias: windows
             os: windows-2025
           - go-version-alias: minimum
@@ -55,7 +55,7 @@ jobs:
 
   golangci-lint:
     name: golangci-lint
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -71,13 +71,13 @@ jobs:
 
   prettier:
     name: Prettier
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
       - name: Setup Node.js environment
         uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
       - name: Run formatter in check mode
         run: npx prettier -c "**.{md,yaml,yml}"
